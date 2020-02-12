@@ -6,7 +6,7 @@ import com.demo.demotext.di.scopes.UserScope
 import com.demo.demotext.repository.BaseRepository
 import com.demo.demotext.repository.GitHubRepository
 
-import com.demo.demotext.view.BaseActivity
+import com.demo.demotext.view.activity.BaseActivity
 import com.demo.demotext.viewmodel.BaseAndroidViewModel
 import dagger.Component
 

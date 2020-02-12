@@ -8,7 +8,7 @@ import com.demo.demotext.di.modules.AppModule
 import com.demo.demotext.di.modules.NetModule
 
 import com.demo.demotext.MyApplication
-import com.demo.demotext.view.BaseActivity
+import com.demo.demotext.view.activity.BaseActivity
 import dagger.Component
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

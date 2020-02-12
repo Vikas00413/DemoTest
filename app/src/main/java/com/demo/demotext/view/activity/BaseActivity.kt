@@ -1,8 +1,7 @@
-package com.demo.demotext.view
+package com.demo.demotext.view.activity
 
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.IntentFilter
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -13,7 +12,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 
 import com.demo.demotext.MyApplication
-import javax.inject.Inject
 
 
 abstract class BaseActivity : AppCompatActivity() {

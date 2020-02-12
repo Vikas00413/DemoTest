@@ -58,7 +58,41 @@ class GetHotDataViewModel : BaseAndroidViewModel {
 
         }
     }
+    fun getNewData() {
+        var data = DataWrapper<RedditMainResponse>(null, null, true)
+        handelAction(data)
+//        val jsonConverter = JSONConverter<LibraryData>()
+//        var jsonObj = jsonConverter.objectToJson(libraryData)
+//        AppUtil.showLogMessage("e", "requestModel==", jsonObj)
+        AppUtil.showLogMessage("e", "address==", repositires.hashCode().toString())
 
+        Coroutines.main {
+            try {
+                val authResponse = repositires!!.getNewData()
+                authResponse?.let {
+                    AppUtil.showLogMessage("e", "response==", it.data.toString())
+                    response!!.value = DataWrapper(it.data, null, false)
+
+                }
+            } catch (e: NoInternetException) {
+                var data = DataWrapper<RedditMainResponse>(
+                    null,
+                    ErrorModel(true, Constant.NET_ERROR),
+                    true
+                )
+                handelAction(data)
+            } catch (e: SocketTimeoutException) {
+                var data = DataWrapper<RedditMainResponse>(
+                    null,
+                    ErrorModel(true, Constant.SLOW_NET_ERROR),
+                    true
+                )
+                handelAction(data)
+
+            }
+
+        }
+    }
 
     constructor(application: Application) : super(application) {
         app = application

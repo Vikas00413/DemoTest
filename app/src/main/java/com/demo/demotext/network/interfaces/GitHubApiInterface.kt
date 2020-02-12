@@ -30,5 +30,9 @@ interface GitHubApiInterface {
     fun getHotData(
     ): Deferred<Response<RedditMainResponse>>
 
+    @GET("new.json")
+    fun getNewData(
+    ): Deferred<Response<RedditMainResponse>>
+
 }
 

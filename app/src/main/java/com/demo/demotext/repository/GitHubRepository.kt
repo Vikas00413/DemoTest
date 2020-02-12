@@ -17,7 +17,7 @@ import javax.inject.Singleton
 object GitHubRepository : BaseRepository() {
 
     /**
-     * This is suspend function is use for Get Locker data
+     * This is suspend function is use for Hot Data
      */
     @Throws(NoInternetException::class, SocketTimeoutException::class)
     suspend fun getHotData(): RedditMainResponseData {
@@ -25,6 +25,28 @@ object GitHubRepository : BaseRepository() {
         try {
             fetchdata.data = safeApiCall(
                 { mGitHubApiInterface.getHotData().await() },
+                "Data Not Found"
+            )
+            return fetchdata
+        } catch (e: NoInternetException) {
+            Log.e("Connectivity_error", "No internet connection", e)
+            throw NoInternetException("No internet connection")
+        } catch (e: SocketTimeoutException) {
+            Log.e("Connectivity_error", "Slow Internet Connection", e)
+            throw SocketTimeoutException("Slow Internet Connection")
+
+        }
+    }
+
+    /**
+     * This is suspend function is use for Hot Data
+     */
+    @Throws(NoInternetException::class, SocketTimeoutException::class)
+    suspend fun getNewData(): RedditMainResponseData {
+        var fetchdata = RedditMainResponseData()
+        try {
+            fetchdata.data = safeApiCall(
+                { mGitHubApiInterface.getNewData().await() },
                 "Data Not Found"
             )
             return fetchdata
